@@ -40,9 +40,9 @@ function Calendar({date}) {
 					</tr>
 				</thead>
 				{createCalendar(date)}
-	</table>
-</div>
-		)
+			</table>
+		</div>
+	)
 }
 
 function createCalendar(date) {
