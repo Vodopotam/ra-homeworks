@@ -29,6 +29,17 @@ class App extends React.Component {
     );
   }
 
+  renderLayout(cardView) {
+    if (cardView) {
+      return (
+        <CardsView
+          layout={this.props.layout}
+          cards={this.getShopItems(this.props.products, cardView)} />
+      );
+    }
+    return (<ListView items={this.getShopItems(this.props.products, cardView)} />);
+  }
+
   getShopItems(products, cardView) {
     return products.map(product => {
       let cardProps = {
