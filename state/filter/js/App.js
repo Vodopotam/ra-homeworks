@@ -15,7 +15,7 @@ class App extends React.Component {
 		console.log(filter);
 	}
 
-	handleProjectsSet() {
+	getProjects() {
 		if (this.state.selected === 'All') {
 			return this.props.projects;
 		}
@@ -30,7 +30,7 @@ class App extends React.Component {
 					filters={this.props.filters}
 					selected={this.state.selected}
 					onSelectFilter={(filter) => this.handleFilterSelection(filter)} />
-				<Portfolio projects={this.handleProjectsSet()} />
+				<Portfolio projects={this.getProjects()} />
 			</div>
 		)
 	}

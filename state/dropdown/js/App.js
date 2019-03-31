@@ -4,7 +4,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: this.props.options[0],
+      active: props.options[0],
       open: false
     }
   }
