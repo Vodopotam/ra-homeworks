@@ -27,3 +27,43 @@ const Profile = props => {
     </div>
   );
 };
+
+const urlPropType = (props, propName, componentName) => {
+  const url = props[propName];
+  const isUrl = (typeof url === 'string') && (/^https:\/\/vk.com\/(id[0-9]+|[A-Za-z0-9_-]+)$/.test(url));
+    
+  if (!isUrl) {
+    return new Error (`Неверный формат параметра ${propName} в компоненте ${componentName}: необходимо указать корректный url`);
+  }
+
+  return null;
+};
+
+const birthdayPropType = (props, propName, componentName) => {
+  const birthdayValue = props[propName];
+  const isBirthdayCorrect = new Date(birthdayValue) > new Date();
+  const isBirthdayValue = (typeof birthdayValue === 'string') && (/^\d{4}\-\d{2}\-\d{2}$/).test(birthdayValue);
+  
+  if (!isBirthdayValue) {
+    return new Error (`Неверный формат параметра ${propName} в компоненте ${componentName}: необходимо указать дату рождения в формате ГГГГ-ММ-ДД`);
+  };
+  if (isBirthdayCorrect) {
+    return new Error (`Неверно указан параметр ${propName} в компоненте ${componentName}: дата рождения не должна быть большей текущей даты`);
+  }
+
+  return null;
+}
+
+Profile.propTypes = {
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+  img: PropTypes.string,
+  url: urlPropType,
+  birthday: birthdayPropType
+}
+
+Profile.defaultProps = {
+  img: './images/profile.jpg',
+  birthday: '1988-03-21'
+}
+

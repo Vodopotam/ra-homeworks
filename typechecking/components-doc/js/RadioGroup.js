@@ -16,3 +16,12 @@ const RadioGroup = props => {
     </div>
   )
 };
+
+RadioGroup.propTypes = {
+  onChange: PropTypes.func,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  list: PropTypes.array,
+  value: PropTypes.oneOf(['муж', 'жен'])
+  }
