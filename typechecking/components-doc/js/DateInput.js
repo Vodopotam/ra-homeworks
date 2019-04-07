@@ -11,18 +11,24 @@ const DateInput = props => {
 };
 
 const datePropType = (props, propName, ComponentName) => {
-		let dateValue = props[propName];
-		let isdateValue = (typeof dateValue === 'string') && (/^\d{4}-\d{2}-\d{2}/).test(dateValue);
+	let dateValue = props[propName];
+	let isdateValue = (typeof dateValue === 'string') && (/^\d{4}-\d{2}-\d{2}/).test(dateValue);
 		
-		if (!isdateValue) {
-			return new Error (`Неверный формат параметра ${propName} в компоненте ${ComponentName}: необходимо указать дату рождения в формате ГГГГ-ММ-ДД`)
-		}
-
-		return null;
+	if (!isdateValue) {
+		return new Error (`Неверный формат параметра ${propName} в компоненте ${ComponentName}: необходимо указать дату рождения в формате ГГГГ-ММ-ДД`)
 	}
 
+	return null;
+}
+
+function setDate() {
+	const date = new Date();
+	date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+	return date.toISOString().slice(0,10);
+}
+
 DateInput.defaultProps = {
-	value: new Date().toISOString().substring(0, 10)
+	value: setDate()
 }
 
 
