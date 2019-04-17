@@ -5,7 +5,6 @@ const wrapTable = (Component, tableType) => {
         constructor(props) {
             super(props);
             this.newList = [];
-            this.currentYear = this.getYear();
         }
 
         componentWillUpdate(newProps) {
