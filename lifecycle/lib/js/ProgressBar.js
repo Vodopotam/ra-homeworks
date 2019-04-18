@@ -2,7 +2,6 @@ class ProgressBar extends React.Component {
   constructor(props) {
     super(props);
       this.canvas = null;
-      this.completed = this.props.completed;
   }
 
   render() {
@@ -11,50 +10,40 @@ class ProgressBar extends React.Component {
     );
   }
 
-  componentDidMount() {
-    this.showCanvas();
-  }
-
-  drawCanvas() {
+  drawCanvas(completed, total) {
     const canvas = this.canvas,
-      completedPart = this.completed / this.props.total;
-    this.ctx = canvas.getContext('2d');
+      completedPart = completed / total,
+      circleDepth = 7,
+      circleOuterR = 52 - circleDepth,
+      circleInnerR = 45 - circleDepth,
+      ctx = canvas.getContext('2d');
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
-    this.ctx.font = '24px Arial';
-    this.ctx.lineWidth = this.circleDepth;
-    this.ctx.textAlign = 'center';
-    this.ctx.textBaseline = 'middle';
-    this.canvasX = canvas.width / 2;
-    this.canvasY = canvas.height / 2;
-    this.ctx.beginPath();
-    this.ctx.strokeStyle  = '#96d6f4';
-    this.ctx.arc(this.canvasX, this.canvasY, this.circleInnerR, 0, Math.PI * 2 * completedPart);
-    this.ctx.stroke();
+    ctx.font = '24px Arial';
+    ctx.lineWidth = circleDepth;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.beginPath();
+    ctx.strokeStyle  = '#96d6f4';
+    ctx.arc(canvas.width / 2, canvas.height / 2, circleInnerR, 0, Math.PI * 2 * completedPart);
+    ctx.stroke();
 
-    this.ctx.beginPath();
-    this.ctx.strokeStyle  = '#4ca89a';
-    this.ctx.arc(this.canvasX, this.canvasY, this.circleOuterR, 0, Math.PI * 2);
-    this.ctx.stroke();
+    ctx.beginPath();
+    ctx.strokeStyle  = '#4ca89a';
+    ctx.arc(canvas.width / 2, canvas.height / 2, circleOuterR, 0, Math.PI * 2);
+    ctx.stroke();
 
-    this.ctx.beginPath();
-    this.ctx.fillText(`${Math.round(completedPart * 100)}%`, this.canvasX, this.canvasY);
+    ctx.beginPath();
+    ctx.fillText(`${Math.round(completedPart * 100)}%`, canvas.width / 2, canvas.height / 2);
   }
 
-  showCanvas() {
-    this.circleDepth = 7;
-    this.circleOuterR = 52 - this.circleDepth;
-    this.circleInnerR = 45 - this.circleDepth;
-    this.drawCanvas();
+
+  componentDidMount() {
+    this.drawCanvas(this.props.completed, this.props.total);
   }
 
-  componentWillUpdate() {
-    this.drawCanvas();
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    this.completed = nextProps.completed;
-    return nextProps.completes !== this.props.completed;
+  componentWillReceiveProps(nextProps) {
+    this.drawCanvas(nextProps.completed, nextProps.total);
   }
 }
