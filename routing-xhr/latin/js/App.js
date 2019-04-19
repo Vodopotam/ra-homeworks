@@ -1,7 +1,6 @@
 class App extends React.Component {
   render() {
     return (
-      <Router>
         <div>
           <Header />
           <Switch>
@@ -11,7 +10,6 @@ class App extends React.Component {
             <Route path="/article/:id" component={Story} />
           </Switch>
         </div>
-      </Router>
     );
   }
 };

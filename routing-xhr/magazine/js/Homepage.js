@@ -1,4 +1,28 @@
+'use strict';
+
+const ReactRouterDOM = window.ReactRouterDOM;
+const {BrowserRouter, Route, Link, Switch} = ReactRouterDOM;
+
 class Homepage extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/routing-xhr/magazine' component={Home} />
+          <Route exact path='/routing-xhr/magazine/index.html' component={Home} />
+          <Route exact path='/routing-xhr/magazine/subscribtion' component={SubscribtionPage} />
+          <Route path='/routing-xhr/magazine/article' component={ArticlePage} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
+
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
@@ -10,7 +34,7 @@ class Homepage extends React.Component {
               <img className="card-img-top" src={`https://picsum.photos/800/180}`} alt="Подписка" />
                 <div className="card-body">
                   <p className="card-text">Уникальная возможность — подписаться на издание!</p>
-                  <a href="/routing-xhr/magazine/subscribtion" className="btn btn-primary">Подписаться</a>
+                  <Link to="/routing-xhr/magazine/subscribtion/" className="btn btn-primary">Подписаться</Link>
                 </div>
               </div>
             </div>
@@ -22,6 +46,6 @@ class Homepage extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

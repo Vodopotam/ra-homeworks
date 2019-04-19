@@ -1,4 +1,12 @@
 class SubscribtionPage extends React.Component {
+
+  componentWillUnmount() {
+    const leavePage = confirm('Вы уверены, что хотите уйти с этой страницы?');
+    if(!leavePage) {
+      this.props.history.goBack();
+    }
+  }
+  
   render() {
     return (
       <div>
