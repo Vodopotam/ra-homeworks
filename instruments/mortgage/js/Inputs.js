@@ -1,17 +1,43 @@
-const Inputs = () => (
-  <div>
-    <label>
-      Стоимость: <input type="number" name="price" value="2000000"/> руб.
-    </label>
-    <br/>
-    <label>
-      На руках:
-      <input type="number" name="money" value="200000"/> руб.
-    </label>
-    <br/>
-    <label>
-      Срок кредита:
-      <input type="number" name="duration" value="5"/> лет.
-    </label>
-  </div>
-);
+const {Input} = antd;
+
+class InputBox extends React.Component {
+    state = {
+      price: '',
+      money: '',
+      duration: ''
+    }
+
+  onChange = (value) => {
+    console.log('changed', value)
+  }
+
+  render() {
+    return  (
+      <section>
+        <Input type='number'  
+              name='price' 
+              addonBefore="Стоимость" 
+              addonAfter="руб."
+              onChange={this.onChange.bind(this, 'price')} 
+              required />
+
+        <Input type='number'  
+              name='money' 
+              addonBefore="На руках" 
+              addonAfter="руб."
+              onChange={this.onChange.bind(this, 'money')} 
+              required />
+
+        <Input type='number' 
+              name='duration' 
+              addonBefore="Срок кредита" 
+              addonAfter="руб."
+              onChange={this.onChange.bind(this, 'duration')} 
+              required />
+      </section>
+    );
+  }
+}
+
+
+

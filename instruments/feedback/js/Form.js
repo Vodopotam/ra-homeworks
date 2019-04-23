@@ -16,15 +16,15 @@ class Form extends React.Component {
   send() {
     this.setState(
       { done: true },
-      this.handleForm,
+      this.handleForm(),
     )
   }
 
   handleForm() {
-    setTimeout(function() {
-      const { name, text } = this.state
-      console.log(name, text)
+    const { name, text } = this.state;
+    console.log(`name: ${name}, text: ${text}`);
 
+    setTimeout(() => {
       this.setState({ done: false })
     }, 1000)
   }
@@ -40,7 +40,7 @@ class Form extends React.Component {
   render() {
     const { done } = this.state
 
-    console.log(this.state)
+    //console.log(this.state)
 
     return (
       <main className="container">
