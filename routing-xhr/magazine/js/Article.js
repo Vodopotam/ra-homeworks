@@ -1,5 +1,5 @@
-const {Link} = window.ReactRouterDOM;
-const Article = props => (
+
+const Article = (props) => (
   <div className="card">
     <img className="card-img-top" src={`https://picsum.photos/260/180/?image=${random(1, 50)}`} alt={props.title} />
     <div className="card-body">

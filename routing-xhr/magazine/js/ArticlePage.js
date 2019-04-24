@@ -1,9 +1,17 @@
-
+const ArticlePage = ({match}) => {
+  const article = articles.find(a => a.id === parseInt(match.params.id));
+  return (
+    <div>
+      <article className="container m-5">
+        <h1>{article.title}</h1>
+        {article.body.split('\n').map(text => <p key={text}>{text}</p>)}
+      </article>
+    </div>
+  )
+};
+/*
 const ArticlePage = ({ location }) => {
-  const articleId = location.pathname.match(/^\/article\/(\d+)?$/i);
-  if (articleId) {
-    const {article} = data.articles.find(({id}) => id === articleId);
-  }
+  const articleId = location.pathname.match(/\d+$/);
 
   return (
     <div>
@@ -15,3 +23,4 @@ const ArticlePage = ({ location }) => {
   );
 }
 
+const Header = withRouter(ArticlePage);*/
