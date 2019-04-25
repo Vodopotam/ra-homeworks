@@ -7,12 +7,12 @@ const App = () => {
       <div>
         <Nav/>
         <Switch>
+          <Route path="/routing-xhr/magazine/"
+                 component={Homepage}/>
           <Route path="/routing-xhr/magazine/subscribtion/"
                  component={SubscribtionPage}/>
           <Route path="/routing-xhr/magazine/article/:id"
                  component={ArticlePage}/>
-          <Route exact path="/routing-xhr/magazine/"
-                 component={Homepage}/>
         </Switch>
       </div>
     </BrowserRouter>
