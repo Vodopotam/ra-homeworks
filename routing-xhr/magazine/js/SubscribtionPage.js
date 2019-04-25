@@ -1,4 +1,3 @@
-
 class SubscribtionPage extends React.Component {
 
   componentWillUnmount() {
@@ -24,6 +23,5 @@ class SubscribtionPage extends React.Component {
     );
   }
 }
-
 
 
