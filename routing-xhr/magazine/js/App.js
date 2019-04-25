@@ -11,7 +11,7 @@ const App = () => {
                  component={SubscribtionPage}/>
           <Route path="/routing-xhr/magazine/article/:id"
                  component={ArticlePage}/>
-          <Route path="/routing-xhr/magazine/"
+          <Route exact path="/routing-xhr/magazine/"
                  component={Homepage}/>
         </Switch>
       </div>
